@@ -187,16 +187,14 @@ void PerformStrings(PLISTCNTRBLOCK pLCB)
 		memset(pItem->sValues, 0, sizeof(pItem->sValues));
 		if (pItem->isAssignment)
 		{
-			sprintf(pItem->sValues,"0x%"LONG_PR"X <= 0x%"LONG_PR"X%n",
+			pItem->ValuesLength = sprintf(pItem->sValues,"0x%"LONG_PR"X <= 0x%"LONG_PR"X",
 											  pItem->ItemValue,
-											  pItem->AssValue,
-											  &(pItem->ValuesLength));
+											  pItem->AssValue);
 		}
 		else
 		{
-			sprintf(pItem->sValues,"0x%"LONG_PR"X%n",
-											  pItem->ItemValue,
-											  &(pItem->ValuesLength));
+			pItem->ValuesLength = sprintf(pItem->sValues,"0x%"LONG_PR"X",
+											  pItem->ItemValue);
 		}
 
 		// Finding maximum value length
@@ -205,9 +203,7 @@ void PerformStrings(PLISTCNTRBLOCK pLCB)
 		
 		//Mask
 		memset(pItem->sMask,0,sizeof(pItem->sMask));
-		sprintf(pItem->sMask,"0x%"LONG_PR"X%n",
-										  pItem->Mask,
-										  &(pItem->MaskLength));
+        pItem->MaskLength = sprintf(pItem->sMask,"0x%"LONG_PR"X", pItem->Mask);
 		// Finding maximum mask length
 		if (pLCB->MaxMaskLength < pItem->MaskLength)
 			pLCB->MaxMaskLength = pItem->MaskLength;

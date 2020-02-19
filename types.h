@@ -8,7 +8,7 @@
 typedef int BOOL;
 
 #ifdef _WIN32
-typedef int/*__int64*/ __INT64;
+typedef __int64 __INT64;
 #define ATOI(x)  _atoi64(x)
 #else
 typedef long long __INT64;
