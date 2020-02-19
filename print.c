@@ -1,17 +1,24 @@
 #include <stdio.h>
 #include <string.h>
 #include "print.h"
+#include "esc_colors.h"
+
+//#define BLUE(string) "\x1b[34m" string "\x1b[0m"
+//#define RED(string)  "\x1b[31m" string "\x1b[0m"
+
 
 void PrintUsage(char *name)
 {
 	MY_NAME;
 
-	printf("%s version %s\n",APP_NAME, VERSION);
-	printf("USAGE: %s [0xHHHHHHHH | DDDDDDDD] {:XX | XX:XX ....}\n", name);
-	printf("Example:\n %s 0x0102030405060708 :40 43:32 :10\n", name);
-	printf("\n %s 72623859790382856 :40 43:32 :10\n\n", name);
-	printf(" %s 0x76534987 03:08'FIELD_A'\n", name);
-	printf(" %s 0x76534987 03:08'FIELD_A' 07:15'FIELD_B'=0xA5\n", name);
+	printf(COLOR(IYellow, "%s version %s\n"),APP_NAME, VERSION);
+	printf(COLOR(Green, "(c) by Igor Kaplinsky (igor.kaplinsky@gmail.com)\n"));
+	printf("USAGE:" COLOR(BIWhite, "%s")" [0xHHHHHHHH | DDDDDDDD] {:XX | XX:XX ....}\n", name);
+	printf(COLOR(BIBlue,"Example:\n"));
+	printf(COLOR(BIWhite," %s")" 0x0102030405060708 :40 43:32 :10\n\n", name);
+	printf(COLOR(BIWhite," %s")" 72623859790382856 :40 43:32 :10\n\n", name);
+	printf(COLOR(BIWhite," %s")" 0x76534987 03:08'FIELD_A'\n", name);
+	printf(COLOR(BIWhite," %s")" 0x76534987 03:08'FIELD_A' 07:15'FIELD_B'=0xA5\n\n", name);
 }
 
 // Print bit string 
@@ -65,7 +72,7 @@ void PrintoutValue(__INT64 Value)
 	printf("%2d| %s|0\n",NibbleHighBit,BitStr);
 	printf("  | %s| \n",ULineStr);
 	printf(" =| %s|\n",BitHexStr);
-	printf("\n Zeros:%d, Ones:%d,\n\n", Zeros, Ones);
+	printf("\n Zeros:(%d), Ones:(%d): ", Zeros, Ones);
 
 	// Number of setup bits
 	for (i=0; i<64; i++)

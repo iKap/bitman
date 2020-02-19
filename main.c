@@ -8,6 +8,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "types.h"
+#include "esc_colors.h"
 
 unsigned char HexMap[256];
 
@@ -114,7 +115,7 @@ void NameCheck(char *pParamStr, PLISTCNTRBLOCK pLCB)
 		else
 		{
 			pItem->isValid = FALSE;
-			printf("Name invalid (%s)\n",pParamStr);
+			printf(COLOR(IRed,"Name invalid (%s)\n"),pParamStr);
 			return;
 		}
 	}
@@ -154,7 +155,7 @@ void ReadBitRange(char *pParamStr, PLISTCNTRBLOCK pLCB)
 		else
 		{
 			pItem->isValid = FALSE;
-			printf("Bit range invalid (%s)\n",pParamStr);
+			printf(COLOR(IRed,"Bit range invalid (%s)\n"),pParamStr);
 		}
 	}//Bit interval
 }//ReadBitRange
@@ -272,7 +273,7 @@ int main(int argc, char *argv[])
 	
 	if (argc < 2)
 	{
-		PrintUsage(APP_NAME_SHORT); // TODO: need to separate name from path "basename"
+		PrintUsage(APP_NAME_SHORT); // TODO: need to separate name from path basename
 		// TODO: Write good description
 		return -1;
 	}
@@ -280,8 +281,8 @@ int main(int argc, char *argv[])
 	HexMapInit();
 	pLCB->ResultValue = pLCB->MainValue = ReadMainValue(argv[1]);
 
-	printf("\n\n\n");
-	printf("[i]: Input Value: ");
+	printf("\n");
+	printf(COLOR(BIWhite,"[Input]:"));
 	printf(" 0x%"LONG_PR"X (%"LONG_PR"u)\n\n", pLCB->MainValue, pLCB->MainValue);  
 
 
@@ -342,7 +343,8 @@ int main(int argc, char *argv[])
 		if (pLCB->isGlobalAssignment && pLCB->ResultValue)
 		{
 			PrintoutValue(pLCB->ResultValue);
-			printf("\nResult Value 0x%"LONG_PR"X (%"LONG_PR"u)\n", pLCB->ResultValue, pLCB->ResultValue);
+			printf(COLOR(BIWhite,"\n[Result]: "));
+			printf("0x%"LONG_PR"X (%"LONG_PR"u)\n", pLCB->ResultValue, pLCB->ResultValue);
 		}
 	}//argc
 	printf("\n");
