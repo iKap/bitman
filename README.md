@@ -1,2 +1,1 @@
-# bitman
-BitMan - Bit Manipulation Tool
+BitMan - command line Bit Manipulation Tool
