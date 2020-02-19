@@ -74,6 +74,10 @@
 #define  On_ICyan "\033[0;106m"    // Cyan
 #define  On_IWhite "\033[0;107m"   // White
 
+#ifdef _WIN32
+#define COLOR(color,string) string
+#else
 #define COLOR(color,string) color string Color_Off
+#endif
 
 #endif

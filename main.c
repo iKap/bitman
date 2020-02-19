@@ -7,6 +7,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include "print.h"
 #include "types.h"
 #include "esc_colors.h"
 
@@ -37,25 +38,6 @@ __INT64 _htoi64(const char *hexstr)
 		hexstr++;
 	}
 	return val;
-}
-
-int GetNonEmptyNibbleHighBit(__INT64 Val)
-{
-	int i,p = 63;
-	__INT64 FMask;
-
-	MY_NAME;
-
-	for (i=0; i < 60; i+=4)
-	{
-		FMask = (__INT64)0xF << (60-i);
-		if (Val & FMask)
-		{
-			return p;
-		}
-		p = 60-i-1;
-	}
-	return p;
 }
 
 void AssignmentCheck(char *pParamStr, PLISTCNTRBLOCK pLCB)

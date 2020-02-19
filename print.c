@@ -3,9 +3,24 @@
 #include "print.h"
 #include "esc_colors.h"
 
-//#define BLUE(string) "\x1b[34m" string "\x1b[0m"
-//#define RED(string)  "\x1b[31m" string "\x1b[0m"
+int GetNonEmptyNibbleHighBit(__INT64 Val)
+{
+	int i,p = 63;
+	__INT64 FMask;
 
+	MY_NAME;
+
+	for (i=0; i < 60; i+=4)
+	{
+		FMask = (__INT64)0xF << (60-i);
+		if (Val & FMask)
+		{
+			return p;
+		}
+		p = 60-i-1;
+	}
+	return p;
+}
 
 void PrintUsage(char *name)
 {
