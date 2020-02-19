@@ -35,8 +35,8 @@ void PrintUsage(char *name)
 	printf(COLOR(BIBlue,"Example:\n"));
 	printf(COLOR(BIWhite," %s")" 0x0102030405060708 :40 43:32 :10\n\n", name);
 	printf(COLOR(BIWhite," %s")" 72623859790382856 :40 43:32 :10\n\n", name);
-	printf(COLOR(BIWhite," %s")" 0x76534987 03:08'FIELD_A'\n", name);
-	printf(COLOR(BIWhite," %s")" 0x76534987 03:08'FIELD_A' 07:15'FIELD_B'=0xA5\n\n", name);
+	printf(COLOR(BIWhite," %s")" 0x76534987 03:08\"'FIELD A'\"\n", name);
+	printf(COLOR(BIWhite," %s")" 0x76534987 03:08\"'FIELD A'\" 07:15\"'FIELD B'\"=0xA5\n\n", name);
 }
 
 // Print bit string 
