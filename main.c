@@ -3,10 +3,15 @@
 /*                                                                           */
 /*****************************************************************************/
 
-#include "global.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+
+#ifdef _WIN32
+#include <windows.h>
+#endif
+
+#include "global.h"
 #include "print.h"
 #include "types.h"
 #include "esc_colors.h"
@@ -245,12 +250,26 @@ void InitListCntrBlock(PLISTCNTRBLOCK pLCB)
 
 TLISTCNTRBLOCK LCB; // List Control Block
 
+#ifdef _WIN32
+void InitConsole()
+{
+    HANDLE hOut = GetStdHandle(STD_OUTPUT_HANDLE);
+    DWORD dwMode = 0;
+    GetConsoleMode(hOut, &dwMode);
+    dwMode |= 0x0004; //ENABLE_VIRTUAL_TERMINAL_PROCESSING;
+    SetConsoleMode(hOut, dwMode);
+}
+#else
+void InitConsole() {}
+#endif
+
 int main(int argc, char *argv[])
 {
 	PLISTCNTRBLOCK pLCB = &LCB;
 	PItem pItem = 0;
 	int HeaderLen;
 
+	InitConsole();
 	InitListCntrBlock(pLCB);
 	
 	if (argc < 2)

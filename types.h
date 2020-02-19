@@ -5,7 +5,7 @@
 #define FALSE 0
 #define TRUE  1
 
-typedef unsigned char BOOL;
+typedef int BOOL;
 
 #ifdef _WIN32
 typedef int/*__int64*/ __INT64;
