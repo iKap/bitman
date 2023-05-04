@@ -176,7 +176,7 @@ void PrintoutItem(PItem pItem, PLISTCNTRBLOCK pLCB)
 	memset(SpacePlace,' ',sizeof(SpacePlace));
 	SpacePlace[pLCB->MaxNameLength] = 0; //The end of Name string
 	if (pItem->isName)
-		sprintf(SpacePlace+(pLCB->MaxNameLength - pItem->NameLength),"%s",pItem->pName);
+		sprintf(SpacePlace+(pLCB->MaxNameLength - pItem->NameLength),COLOR(BIWhite,"%s"),pItem->pName);
 	printf("  %s :",SpacePlace);
 	// pItem Value (regarding to bit range (or single bit)
 	printf(" %s",pItem->sValues);

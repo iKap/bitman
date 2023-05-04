@@ -76,4 +76,6 @@
 
 #define COLOR(color,string) color string Color_Off
 
+#define tprintf(m, ...)  printf(COLOR(BIBlue,"[%s]:") m, __func__, ##__VA_ARGS__)
+
 #endif
